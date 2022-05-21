@@ -1,0 +1,26 @@
+CREATE TABLE bakery_inventory (id INTEGER PRIMARY KEY, item TEXT, quantity INTEGER, price_in_peso INTEGER, vegan_friendly TEXT);
+
+INSERT INTO bakery_inventory values (1, "plain croissant", 5, 120, "no");
+INSERT INTO bakery_inventory values (2, "strawberry shortcake", 3, 250, "no");
+INSERT INTO bakery_inventory values (3, "oatmeal cookie", 10, 50, "yes");
+INSERT INTO bakery_inventory values (4, "carrot cake", 4, 150, "yes");
+INSERT INTO bakery_inventory values (5, "plain bagel", 5, 90, "no");
+INSERT INTO bakery_inventory values (6, "chocolate ganache", 3, 250, "no");
+INSERT INTO bakery_inventory values (7, "cinnamon roll", 6, 80, "no");
+INSERT INTO bakery_inventory values (8, "ginger loaf cake", 7, 90, "yes");
+INSERT INTO bakery_inventory values (9, "vegan chocolate cake", 3, 200, "yes");
+INSERT INTO bakery_inventory values (10, "cheesecake", 2, 200, "no");
+INSERT INTO bakery_inventory values (11, "brownies", 8, 50, "yes");
+INSERT INTO bakery_inventory values (12, "custard cake", 4, 180, "no");
+INSERT INTO bakery_inventory values (13, "egg tart", 9, 90, "no");
+INSERT INTO bakery_inventory values (14, "lemon cupcake", 6, 70, "yes");
+INSERT INTO bakery_inventory values (15, "apple pie", 8, 130, "yes");
+
+/** SHOW PRICE IN INCREASING ORDER **/
+
+SELECT * FROM bakery_inventory ORDER BY price_in_peso;
+
+/** SHOW WHICH PRODUCTS ARE VEGAN-FRIENDLY **/
+
+SELECT * FROM bakery_inventory WHERE vegan_friendly = "yes" ORDER BY price_in_peso;
+

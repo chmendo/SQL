@@ -1,0 +1,146 @@
+/* CREATE AUTHORS TABLE */
+CREATE TABLE authors (
+    id INTEGER PRIMARY KEY, 
+    name TEXT, 
+    gooodreads_acc TEXT);
+
+INSERT INTO authors VALUES (1, 'Neil Gaiman', 'https://www.goodreads.com/author/show/1221698.Neil_Gaiman?from_search=true&from_srp=true');
+
+INSERT INTO authors VALUES (2, 'Rick Riordan', 'https://www.goodreads.com/author/show/15872.Rick_Riordan');
+
+INSERT INTO authors VALUES (3, 'Patrick Rothfuss', 'https://www.goodreads.com/author/show/108424.Patrick_Rothfuss');
+
+INSERT INTO authors VALUES (4, 'Brandon Sanderson', 'https://www.goodreads.com/author/show/38550.Brandon_Sanderson');
+
+INSERT INTO authors VALUES (5, 'Fredrick Backman', 'https://www.goodreads.com/author/show/6485178.Fredrik_Backman');
+
+INSERT INTO authors VALUES (6, 'Matt Haig', 'https://www.goodreads.com/author/show/76360.Matt_Haig');
+
+INSERT INTO authors VALUES (7, 'Amor Towles', 'https://www.goodreads.com/author/show/4536964.Amor_Towles');
+
+INSERT INTO authors VALUES (8, 'Paulo Coelho', 'https://www.goodreads.com/author/show/566.Paulo_Coelho');
+
+INSERT INTO authors VALUES (9, 'Maggie Stiefvater', 'https://www.goodreads.com/author/show/1330292.Maggie_Stiefvater');
+
+INSERT INTO authors VALUES (10, 'Leigh Bardugo', 'https://www.goodreads.com/author/show/4575289.Leigh_Bardugo');
+
+INSERT INTO authors VALUES (11, 'Rainbow Rowell', 'https://www.goodreads.com/author/show/4208569.Rainbow_Rowell');
+
+INSERT INTO authors VALUES (12, 'John Green', 'https://www.goodreads.com/author/show/1406384.John_Green');
+
+INSERT INTO authors VALUES (13, 'Dan Brown', 'https://www.goodreads.com/author/show/630.Dan_Brown');
+
+INSERT INTO authors VALUES (14, 'Jonathan Safran Foer', 'https://www.goodreads.com/author/show/2617.Jonathan_Safran_Foer');
+
+INSERT INTO authors VALUES (15, 'James Dashner', 'https://www.goodreads.com/author/show/348878.James_Dashner');
+
+
+/** CREATE BOOK TITLES TABLE **/
+
+CREATE TABLE books (
+    id INTEGER PRIMARY KEY,
+    author_id INTEGER,
+    name TEXT,
+    genre TEXT);
+    
+INSERT INTO books VALUES (1, 1, 'Good Omens', 'Fantasy');
+
+INSERT INTO books VALUES (2, 1, 'American Goods', 'Fantasy');
+
+INSERT INTO books VALUES (3, 1, 'The Graveyard Book', 'Young Adult');
+
+INSERT INTO books VALUES (4, 2, 'The Lightning Thief', 'Fantasy/Mythology');
+
+INSERT INTO books VALUES (5, 2, 'The Lost Hero', 'Fantasy/Mythology');
+
+INSERT INTO books VALUES (6, 2, 'The Red Pyramid', 'Fantasy/Mythology');
+
+INSERT INTO books VALUES (7, 3, 'The Name of The Wind', 'High Fantasy');
+
+INSERT INTO books VALUES (8, 3, 'The Wise Mans Fear', 'High Fantasy');
+
+INSERT INTO books VALUES (9, 3, 'The Slow Regard of Silent Things', 'High Fantasy');
+
+INSERT INTO books VALUES (10, 4, 'The Final Empire', 'High Fantasy');
+
+INSERT INTO books VALUES (11, 4, 'The Way of Kings', 'High Fantasy');
+
+INSERT INTO books VALUES (12, 4, 'Elantris', 'High Fantasy');
+
+INSERT INTO books VALUES (13, 5, 'A Man Called Ove', 'Fiction');
+
+INSERT INTO books VALUES (14, 5, 'Beartown', 'Fiction');
+
+INSERT INTO books VALUES (15, 5, 'Anxious People', 'Fiction');
+
+INSERT INTO books VALUES (16, 6, 'Reasons To Stay Alive', 'Self-Help');
+
+INSERT INTO books VALUES (17, 6, 'The Midnight Library', 'Magical Realism');
+
+INSERT INTO books VALUES (18, 6, 'How To Stop Time', 'Historical Fiction');
+
+INSERT INTO books VALUES (19, 7, 'A Gentleman In Moscow', 'Historical Fiction');
+
+INSERT INTO books VALUES (20, 7, 'Rules of Civility', 'Historical Fiction');
+
+INSERT INTO books VALUES (21, 7, 'Lincoln Highway', 'Historical Fiction');
+
+INSERT INTO books VALUES (22, 8, 'The Alchemist', 'Fiction/Philosophy');
+
+INSERT INTO books VALUES (23, 8, 'Veronika Decides To Die', 'Contemporary Fiction');
+
+INSERT INTO books VALUES (24, 8, 'Eleven Minutes', 'Contemporary Fiction');
+
+INSERT INTO books VALUES (25, 9, 'The Raven Boys', 'Young Adult');
+
+INSERT INTO books VALUES (26, 9, 'Call Down The Hawk', 'Young Adult');
+
+INSERT INTO books VALUES (27, 9, 'Shiver', 'Young Adult');
+
+INSERT INTO books VALUES (28, 10, 'Six of Crows', 'YA Fantasy');
+
+INSERT INTO books VALUES (29, 10, 'Shadow and Bone', 'YA Fantasy');
+
+INSERT INTO books VALUES (30, 10, 'Ninth House', 'Mystery');
+
+INSERT INTO books VALUES (31, 11, 'Eleanor & Park', 'Young Adult');
+
+INSERT INTO books VALUES (32, 11, 'Fangirl', 'Young Adult');
+
+INSERT INTO books VALUES (33, 11, 'Attachments', 'Romance');
+
+INSERT INTO books VALUES (34, 12, 'Looking For Alaska', 'Coming of Age');
+
+INSERT INTO books VALUES (35, 12, 'The Fault in Our Stars', 'YA Romance');
+
+INSERT INTO books VALUES (36, 12, 'Will Grayson, Will Grayson', 'Coming of Age');
+
+INSERT INTO books VALUES (37, 13, 'Angels & Demons', 'Mystery/Thriller');
+
+INSERT INTO books VALUES (38, 13, 'The Da Vinci Code', 'Mystery/Thriller');
+
+INSERT INTO books VALUES (39, 13, 'The Lost Symbol', 'Mystery/Thriller');
+
+INSERT INTO books VALUES (40, 14, 'Extremely Loud & Incredibly Close', 'Contemporary');
+
+INSERT INTO books VALUES (41, 14, 'Everything Is Illuminated', 'Historical Fiction');
+
+INSERT INTO books VALUES (42, 14, 'Eating Animals', 'Nonfiction');
+
+INSERT INTO books VALUES (43, 15, 'The Maze Runner', 'Dystopian Fiction');
+
+INSERT INTO books VALUES (44, 15, 'The Scorch Trials', 'Dystopian Fiction');
+
+INSERT INTO books VALUES (45, 15, 'The Death Cure', 'Dystopian Fiction');
+
+/**SELECT AUTHORS TABLE **/
+SELECT * FROM authors;
+
+/** MATCH BOOK TITLES WITH THEIR AUTHORS **/
+
+SELECT b.name AS book_title, a.name AS author, b.genre
+    FROM authors AS a
+        INNER JOIN books AS b
+        ON a.id = b.author_id
+        ORDER BY a.name;
+    

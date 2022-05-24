@@ -18,9 +18,14 @@ INSERT INTO bakery_inventory values (15, "apple pie", 8, 130, "yes");
 
 /** SHOW PRICE IN INCREASING ORDER **/
 
-SELECT * FROM bakery_inventory ORDER BY price_in_peso;
+SELECT * FROM bakery_inventory ORDER BY price_in_peso DESC;
+
+/** COUNT ALL VEGAN-FRIENDLY ITEMS **/
+
+SELECT COUNT(*) FROM bakery_inventory
+WHERE vegan_friendly ='yes';
 
 /** SHOW WHICH PRODUCTS ARE VEGAN-FRIENDLY **/
 
-SELECT * FROM bakery_inventory WHERE vegan_friendly = "yes" ORDER BY price_in_peso;
+SELECT item, price_in_peso FROM bakery_inventory WHERE vegan_friendly = "yes" ORDER BY price_in_peso;
 

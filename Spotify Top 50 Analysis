@@ -1,0 +1,57 @@
+# Started off with creating a new table for the Top 50 dataset
+
+/* Spotifty Dataset Table */
+CREATE TABLE BIT_DB.Spotify (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+);
+
+# Preliminary exploration of the dataset
+
+SELECT * FROM BIT_DB.Spotifydata;
+
+
+# This is where the analysis starts
+# First, I checked which artists have more than 2 songs in the Top 50 chart
+
+SELECT artist_name, COUNT(artist_name) AS appearance 
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+HAVING appearance >= 3;
+
+
+# Taking a look at the top 5 songs based on their popularity index
+
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC LIMIT 5;
+
+
+# Then we take a look at the songs in the top 50 with the least popularity index
+
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity ASC LIMIT 5;
+
+
+# Here I also ordered the songs by 'grooviness' by multiplying its danceability with energy
+
+SELECT id, track_name, artist_name, (danceability*energy)*100 AS grooviness
+FROM BIT_DB.Spotifydata
+ORDER BY grooviness DESC;

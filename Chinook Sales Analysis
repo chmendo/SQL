@@ -1,0 +1,53 @@
+# Querying Chinook Database for Sales Analysis From 2009 to 2013
+# First, I took the time to explore the different tables I'm going to work with
+
+SELECT * FROM chinook.invoices;
+SELECT * FROM chinook.customers;
+SELECT * FROM chinook.employees;
+SELECT * FROM chinook.invoice_items;
+
+# I'm curious about the management hierarchy so I'm going to check and see which employee reports to whom
+
+/** SELF-JOIN to see company hierarchy **/
+SELECT e2.lastname AS employee, e1.lastname AS reports_to
+FROM chinook.employees AS e1
+INNER JOIN chinook.employees AS e2
+ON e2.reportsto = e1.employeeid;
+
+
+# Checking to see which countries have the most orders
+
+/** Show top 5 countries are most of the customers from **/
+SELECT country, COUNT(Country) FROM chinook.customers
+LEFT JOIN chinook.invoices
+ON chinook.customers.customerid = chinook.invoices.customerid
+GROUP BY country
+ORDER BY COUNT(Country) DESC
+LIMIT 5;
+
+
+# Comparing the total number of sales each year from 2010
+
+/* Total number of sales in 2010 */
+SELECT SUM(total) AS total_2010_sales FROM chinook.invoices
+WHERE invoicedate LIKE '2010%';
+
+/* Total number of sales in 2011 */
+SELECT SUM(total) AS total_2011_sales FROM chinook.invoices
+WHERE invoicedate LIKE '2011%';
+
+/* Total number of sales in 2012 */
+SELECT SUM(total) AS total_2012_sales FROM chinook.invoices
+WHERE invoicedate LIKE '2012%';
+
+/* Total number of sales in 2013 */
+SELECT SUM(total) AS total_2013_sales FROM chinook.invoices
+WHERE invoicedate LIKE '2013%';
+
+
+# Check to see the number of invoices by country where order total is over $10
+
+SELECT billingcountry, COUNT(total) AS OrderTotal_over_10 FROM chinook.invoices
+WHERE total > 10
+GROUP BY billingcountry
+ORDER BY COUNT(total) DESC;

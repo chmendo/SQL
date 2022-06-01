@@ -51,3 +51,14 @@ SELECT billingcountry, COUNT(total) AS OrderTotal_over_10 FROM chinook.invoices
 WHERE total > 10
 GROUP BY billingcountry
 ORDER BY COUNT(total) DESC;
+
+
+/* Compare lowest invoice total with highest invoice total in year 2012 */
+SELECT MIN(total) AS MIN_InvoiceTotal, MAX(total) AS MAX_InvoiceTotal
+FROM chinook.invoices
+WHERE invoicedate LIKE '2012%';
+
+/* Compare lowest invoice total with highest invoice total in year 2013 */
+SELECT MIN(total) AS MIN_InvoiceTotal, MAX(total) AS MAX_InvoiceTotal
+FROM chinook.invoices
+WHERE invoicedate LIKE '2013%';

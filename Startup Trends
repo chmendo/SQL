@@ -1,0 +1,57 @@
+# For this project, I am using a tech startup dataset from https://techcrunch.com/ as part of CodeCademy's SQL Skill Path
+
+# Initial exploration of the dataset
+
+SELECT * FROM startups;
+
+SELECT COUNT(*)
+FROM startups;
+
+SELECT SUM(valuation)
+FROM startups;
+
+/** What is the highest amount raised by a startup **/
+SELECT MAX(raised)
+FROM startups;
+
+/** Max amt of money raised during seed stage **/
+SELECT MAX(raised)
+FROM startups
+WHERE stage = 'Seed';
+
+/** In what year was the oldest company on the list founded? **/
+SELECT MIN(founded)
+FROM startups;
+
+# Find out valuation among different sectors
+/**Average valuation of category, rounded by 2 decimal places. **/
+SELECT category, ROUND(AVG(valuation),2) AS avg_valuation
+FROM startups
+GROUP BY category
+ORDER BY avg_valuation DESC;
+
+# Most competitive market analysis
+/** Total number of companies per category **/
+SELECT category, COUNT(name)
+FROM startups
+WHERE category IS NOT NULL
+GROUP BY category;
+
+/** Show categories with more than 3 companies **/
+SELECT category, COUNT(name) AS company_count
+FROM startups
+GROUP BY category
+HAVING company_count > 3;
+
+/** Average size of company based on location **/
+SELECT location, ROUND(AVG(employees),2) AS size
+FROM startups
+GROUP BY location
+ORDER BY size DESC;
+
+/** Avg. size of company based on location, where avg. size > 500 **/
+SELECT location, ROUND(AVG(employees),2) AS size
+FROM startups
+GROUP BY location
+HAVING size > 500
+ORDER BY size DESC;

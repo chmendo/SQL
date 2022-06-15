@@ -1,0 +1,59 @@
+# In this project, we are analyzing Hacker News Trends which will answer the following questions:
+# 1. What is the total score of all stories?
+# 2. Which users have scores over 200
+# 3. Is the scoreboard dominated by the top users? How much is the percentage of their total scored combined?
+# 4. Which user are deliberately rickrolling Hacker News?
+# 5. Which websites are the top sources of Hacker News stories?
+# 6. What’s the best time of the day to post a story on Hacker News?
+
+SELECT title, score
+FROM hacker_news
+ORDER BY score DESC
+LIMIT 5;
+
+/** Find out total score of all stories**/
+SELECT SUM(score)
+FROM hacker_news;
+
+/** Users having a score > 200 **/
+SELECT user, SUM(score) AS sum_score
+FROM hacker_news
+GROUP BY user
+HAVING sum_score > 200
+ORDER BY sum_score DESC;
+
+
+/** Total Percentage of Top Users**/
+SELECT ROUND((517 + 309 + 304 + 282) / 6366.0*100,2);
+
+/** Which users redirect to Rick Roll videos**/
+SELECT user, COUNT(url)
+FROM hacker_news
+WHERE url ='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+GROUP BY user;
+
+/** Categorize story by source **/
+SELECT CASE
+  WHEN url LIKE '%github.com%' THEN 'GitHub'
+  WHEN url LIKE '%medium.com%' THEN 'Medium'
+  WHEN url LIKE '%nytimes.com%' THEN 'New York Times'
+  ELSE 'Other'
+  END AS 'source',
+  COUNT(*)
+FROM hacker_news
+GROUP BY 1;
+
+/** Explore timestamp **/
+SELECT timestamp,
+  strftime('%H', timestamp)
+FROM hacker_news
+GROUP BY 1
+LIMIT 10;
+
+/** What’s the best time of the day to post a story on Hacker News? **/
+SELECT
+ strftime('%H', timestamp) AS hour, ROUND(AVG(score),2) AS avg_score, COUNT(*) AS story_count
+ FROM hacker_news
+ WHERE hour IS NOT NULL
+ GROUP BY 1
+ ORDER BY 1;
